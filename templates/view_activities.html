@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Activities</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Book+Antiqua&display=swap">
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="University Logo" class="logo">
+        <h1>The Management University of Africa</h1>
+    </header>
+    <h1>Activities List</h1>
+    <table>
+        <tr>
+            <th>Department Name</th>
+            <th>Head of Department</th>
+            <th>Activity</th>
+            <th>Scheduled Date</th>
+            <th>Duration (days)</th>
+            <th>Status</th>
+        </tr>
+        {% for activity in activities %}
+        <tr>
+            <td>{{ activity.department_name }}</td>
+            <td>{{ activity.head_of_department }}</td>
+            <td>{{ activity.activity_name }}</td>
+            <td>{{ activity.scheduled_date.strftime('%Y-%m-%d') }}</td>
+            <td>{{ activity.duration }}</td>
+            <td>{{ activity.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>
